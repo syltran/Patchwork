@@ -1,0 +1,51 @@
+<!--
+-Pour exécuter l'une des cibles : clean, javadoc, compile, jar et run :
+tappez : `ant [nom de la cible]`
+
+-Tappez seulement `ant` exécutera la cible par défaut jar.
+-->
+
+<project name="Patchwork" default="jar">
+
+    <property name="jar" value="Patchwork.jar"/>
+    <property name="javadoc" value="docs/doc"/>
+
+    <!-- ant clean : permet le nettoyage du projet -->
+    <target name="clean">
+        <delete includeEmptyDirs="true" dir="classes"/>
+        <mkdir dir="classes"/>
+        <delete includeEmptyDirs="true" dir="${javadoc}"/>
+        <mkdir dir="${javadoc}"/>
+        <delete file="${jar}"/>
+        <delete file="MANIFEST.MF"/>
+    </target>
+
+    <!-- ant javadoc : permet la génération de la javadoc, écrite en anglais -->
+    <target name="javadoc">
+        <mkdir dir="${javadoc}"/>
+        <javadoc sourcepath="src" destdir="${javadoc}">
+            <fileset dir="src">
+                <include name="**/*.java"/>
+            </fileset>
+        </javadoc>
+    </target>
+
+    <!-- ant compile : permet la compilation des classes du projet -->
+    <target name="compile">
+        <javac srcdir="src" destdir="classes"/>
+    </target>
+
+    <!-- ant jar : permet la création du jar -->
+    <target name="jar" depends="compile">
+        <manifest file="MANIFEST.MF">
+            <attribute name="Main-Class" value="fr.umlv.patchwork.Game"/>
+        </manifest>
+        <jar destfile="${jar}" basedir="classes" manifest="MANIFEST.MF"></jar>
+    </target>
+
+    <!-- ant run : permet de lancer le jeu -->
+    <target name="run" depends="jar">
+        <java jar="${jar}" fork="true"/>
+    </target>
+
+</project>
