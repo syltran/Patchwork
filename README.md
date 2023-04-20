@@ -14,5 +14,5 @@ Réaliser le jeu de société Patchwork en Java.
 - JDK >= 19. Tappez dans un terminal : `sudo apt-get install openjdk-19-jdk`
 
 ## Documentations :
-- javadoc : 
-- Utilisateur : 
+- javadoc : [ici](https://github.com/syltran/Patchwork/tree/master/docs/doc)
+- Utilisateur : [ici](https://github.com/syltran/Patchwork/blob/master/docs/user.pdf)
